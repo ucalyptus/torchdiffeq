@@ -151,7 +151,8 @@ class _TupleFunc(torch.nn.Module):
 
     def forward(self, t, y):
         print('next is flat to shape of f before base func')
-        print(_flat_to_shape(y, (), self.shapes).shape)
+        print(_flat_to_shape(y, (), self.shapes)[0].shape)
+        print(_flat_to_shape(y, (), self.shapes)[1].shape)
         f = self.base_func(t, _flat_to_shape(y, (), self.shapes))
         print(f.shape)
         return torch.cat([f_.reshape(-1) for f_ in f])
