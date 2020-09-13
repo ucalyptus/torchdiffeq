@@ -153,6 +153,7 @@ class _TupleFunc(torch.nn.Module):
 
     def forward(self, t, y):
         f = self.base_func(t, _flat_to_shape(y, (), self.shapes))
+        print(f.shape)
         return torch.cat([f_.reshape(-1) for f_ in f])
 
 
