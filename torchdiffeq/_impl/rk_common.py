@@ -139,7 +139,6 @@ class RKAdaptiveStepsizeODESolver(AdaptiveStepsizeODESolver):
 
     def _before_integrate(self, t):
         f0 = self.func(t[0], self.y0)
-        print('next ones are for initial step')
         if self.first_step is None:
             first_step = _select_initial_step(self.func, t[0], self.y0, self.order - 1, self.rtol, self.atol,
                                               self.norm, f0=f0)
