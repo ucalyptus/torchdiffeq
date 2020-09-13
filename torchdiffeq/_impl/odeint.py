@@ -61,7 +61,7 @@ def odeint(func, y0, t, rtol=1e-7, atol=1e-9, method=None, options=None):
         
     """
     shapes, func, y0, t, rtol, atol, method, options = _check_inputs(func, y0, t, rtol, atol, method, options, SOLVERS)
-    print('y0 is after input checks  '+y0.shape)
+    print('y0 is after input checks ' + str(y0.shape))
     solver = SOLVERS[method](func=func, y0=y0, rtol=rtol, atol=atol, **options)
     solution = solver.integrate(t)
 
