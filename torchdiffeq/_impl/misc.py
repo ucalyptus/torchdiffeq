@@ -59,16 +59,12 @@ def _select_initial_step(func, t0, y0, order, rtol, atol, norm, f0=None):
     device = y0.device
     t_dtype = t0.dtype
     t0 = t0.to(dtype)
-    
-    print(f0.shape)
+
     
     if f0 is None:
         f0 = func(t0, y0)
 
     scale = atol + torch.abs(y0) * rtol
-    print(scale.shape)
-    print(y0.shape)
-    print(f0.shape)
 
     d0 = norm(y0 / scale)
     d1 = norm(f0 / scale)
@@ -142,7 +138,8 @@ def _flat_to_shape(tensor, length, shapes):
     for shape in shapes:
         next_total = total + shape.numel()
         # It's important that this be view((...)), not view(...). Else when length=(), shape=() it fails.
-        print(tensor.shape)
+        print(next_total)
+        print('yeah boi')
         tensor_list.append(tensor[..., total:next_total].view((*length, *shape)))
         total = next_total
     return tuple(tensor_list)
