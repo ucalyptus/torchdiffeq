@@ -59,7 +59,9 @@ def _select_initial_step(func, t0, y0, order, rtol, atol, norm, f0=None):
     device = y0.device
     t_dtype = t0.dtype
     t0 = t0.to(dtype)
-
+    
+    print(f0.shape)
+    
     if f0 is None:
         f0 = func(t0, y0)
 
