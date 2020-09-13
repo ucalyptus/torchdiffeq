@@ -150,8 +150,8 @@ class _TupleFunc(torch.nn.Module):
         self.shapes = shapes
 
     def forward(self, t, y):
-        f = self.base_func(t, _flat_to_shape(y, (), self.shapes)).repeat(2)
-        return torch.cat([f_.reshape(-1) for f_ in f])
+        f = self.base_func(t, _flat_to_shape(y, (), self.shapes))
+        return torch.cat([f_.reshape(-1) for f_ in f]).repeat(len(self.shapes))
 
 
 class _ReverseFunc(torch.nn.Module):
