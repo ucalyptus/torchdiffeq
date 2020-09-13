@@ -140,6 +140,7 @@ class RKAdaptiveStepsizeODESolver(AdaptiveStepsizeODESolver):
 
     def _before_integrate(self, t):
         f0 = self.func(t[0], self.y0)
+        print('now f0 has been computed')
         print(t.shape)
         print(t[0].shape)
         print(f0.shape)
