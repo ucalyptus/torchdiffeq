@@ -173,8 +173,8 @@ def _check_inputs(func, y0, t, rtol, atol, method, options, SOLVERS):
         shapes = [y0_.shape for y0_ in y0]
         rtol = _tuple_tol('rtol', rtol, shapes)
         atol = _tuple_tol('atol', atol, shapes)
-        y0 = torch.cat([y0_.reshape(-1) for y0_ in y0]).unsqueeze(0).view(len(shapes),-1)
-        y0 = torch.mean(y0,axis=0)
+        y0 = torch.cat([y0_.reshape(-1) for y0_ in y0])#.unsqueeze(0).view(len(shapes),-1)
+        #y0 = torch.mean(y0,axis=0)
         func = _TupleFunc(func, shapes)
     _assert_floating('y0', y0)
 
