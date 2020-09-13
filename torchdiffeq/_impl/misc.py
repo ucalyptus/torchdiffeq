@@ -138,8 +138,6 @@ def _flat_to_shape(tensor, length, shapes):
     for shape in shapes:
         next_total = total + shape.numel()
         # It's important that this be view((...)), not view(...). Else when length=(), shape=() it fails.
-        print(next_total)
-        print('yeah boi')
         tensor_list.append(tensor[..., total:next_total].view((*length, *shape)))
         total = next_total
     return tuple(tensor_list)
@@ -152,8 +150,7 @@ class _TupleFunc(torch.nn.Module):
         self.shapes = shapes
 
     def forward(self, t, y):
-        print('t ka shape')
-        print(t.shape)
+        print('next is flat to shape of f before base func')
         print(_flat_to_shape(y, (), self.shapes).shape)
         f = self.base_func(t, _flat_to_shape(y, (), self.shapes))
         print(f.shape)
