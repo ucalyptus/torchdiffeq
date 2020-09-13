@@ -142,6 +142,7 @@ def _flat_to_shape(tensor, length, shapes):
     for shape in shapes:
         next_total = total + shape.numel()
         # It's important that this be view((...)), not view(...). Else when length=(), shape=() it fails.
+        print(tensor.shape)
         tensor_list.append(tensor[..., total:next_total].view((*length, *shape)))
         total = next_total
     return tuple(tensor_list)
