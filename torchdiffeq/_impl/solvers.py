@@ -9,6 +9,7 @@ class AdaptiveStepsizeODESolver(metaclass=abc.ABCMeta):
         del unused_kwargs
 
         self.y0 = y0
+        print(y0.shape)
         self.dtype = dtype
 
         self.norm = norm
