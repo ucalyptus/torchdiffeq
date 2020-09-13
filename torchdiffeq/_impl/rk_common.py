@@ -115,7 +115,6 @@ class RKAdaptiveStepsizeODESolver(AdaptiveStepsizeODESolver):
         # We use mixed precision. y has its original dtype (probably float32), whilst all 'time'-like objects use
         # `dtype` (defaulting to float64).
         dtype = torch.promote_types(dtype, y0.dtype)
-        print(y0.shape)
         device = y0.device
 
         self.func = lambda t, y: func(t.type_as(y), y)
