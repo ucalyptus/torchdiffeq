@@ -64,6 +64,9 @@ def _select_initial_step(func, t0, y0, order, rtol, atol, norm, f0=None):
         f0 = func(t0, y0)
 
     scale = atol + torch.abs(y0) * rtol
+    print(scale.shape)
+    print(y0.shape)
+    print(f0.shape)
 
     d0 = norm(y0 / scale)
     d1 = norm(f0 / scale)
