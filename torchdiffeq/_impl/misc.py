@@ -67,7 +67,7 @@ def _select_initial_step(func, t0, y0, order, rtol, atol, norm, f0=None):
     scale = atol + torch.abs(y0) * rtol
 
     d0 = norm(y0 / scale)
-    d1 = norm(f0 / scale)
+    d1 = norm(f0 / scale[:scale.shape[0] // 2])   #scale slice taken is the one corresponding to the source
 
     if d0 < 1e-5 or d1 < 1e-5:
         h0 = torch.tensor(1e-6, dtype=dtype, device=device)
@@ -151,7 +151,7 @@ class _TupleFunc(torch.nn.Module):
 
     def forward(self, t, y):
         f = self.base_func(t, _flat_to_shape(y, (), self.shapes))
-        return torch.cat([f_.reshape(-1) for f_ in f]).repeat(len(self.shapes))
+        return torch.cat([f_.reshape(-1) for f_ in f])
 
 
 class _ReverseFunc(torch.nn.Module):
